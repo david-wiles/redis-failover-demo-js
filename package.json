@@ -1,0 +1,14 @@
+{
+  "name": "redis-failover-demo-js",
+  "version": "0.0.0",
+  "description": "Demo of Redis client failover behavior",
+  "main": "index.js",
+  "repository": "github.com/david-wiles/redis-failover-demo-js",
+  "author": "David Wiles",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.18.2",
+    "redis": "^4.6.7"
+  }
+}

@@ -1,0 +1,23 @@
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - 9000:9000
+    depends_on:
+      redis_1:
+        condition: service_healthy
+      redis_2:
+        condition: service_healthy
+  redis_1:
+    image: redis:alpine
+    ports:
+      - 6301:6379
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+  redis_2:
+    image: redis:alpine
+    ports:
+      - 6302:6379
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
