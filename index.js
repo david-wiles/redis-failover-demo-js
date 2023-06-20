@@ -5,13 +5,14 @@ const app = express();
 const client = createClient({
   url: 'redis://redis_1:6379'
 });
-client.on('error', err => console.log('redis error', err));
+client.on('error', err => console.log('redis error err='+err));
 
 await client.connect();
 
 app.get("/get/:key", async (req, res) => {
   const value = await client.get(req.params.key)
-  res.json({value});
+  if (value === null) console.error('key not found key='+req.params.key);
+  res.json({value})
 });
 
 app.post("/set/:key/:value", async (req, res) => {
